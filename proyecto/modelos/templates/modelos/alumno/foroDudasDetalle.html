@@ -1,0 +1,102 @@
+{% extends 'modelos/alumno/navBarAlumno.html' %}
+
+{% block titulo %} Foro de dudas a detalle {% endblock titulo %}
+
+{% block contenido %}
+
+{%load static%}
+<div class="container">
+    <div class="container">
+        <div class="titulosobre">
+            <div class="row">
+                <div class="col-5 align-self-center">
+                    <hr color="#9BF176" size=3>
+                </div>
+                <div class="col-2" style="text-align: center;">
+                    <i> Foro de dudas a detalle</i>
+                </div>
+                <div class="col-5 align-self-center">
+                    <hr color="#1BE1DB" size=3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="{% static 'profesor/css/dudas.css' %}" rel="stylesheet">
+
+
+<br>
+{%csrf_token%}
+<div class="container">
+    <!-- Inico del div del foro de responder duda -->
+    <div class="container">
+        <!-- Inicio Cards para el foro de responder dudas -->
+        <div class="card mb-3">
+            <!-- Inicio de un foro -->
+            <div class="card-body">
+                <!-- Aqui va la varibale que consulta la fecha de la duda -->
+                <div class="col-sm-12 d-flex justify-content-end">
+                    <p class="text-rigth">Fecha de pubicación: {{duda.create_at}}</p>
+                </div>
+                <!-- Aqui va la varibale que consulta el titulo de la duda -->
+                <div class="col-sm-12 d-flex justify-content-start">
+                    <h5><p class="text-rigth">Asunto: {{duda.titulo}}</p></h5>
+                </div>
+                <!-- Aqui va la varibale que consulta el nombre de quien hace la pregunta -->
+                <div class="col-sm-12 d-flex justify-content-start">
+                    <h6><p class="text-rigth">Publicado por: {{duda.nombre_usuario}}</p></h6>
+                </div>
+                <!-- Aqui va la varibale que consulta la pregunta del usuario -->
+                <div class="col-sm-12 d-flex justify-content-start">
+                    <p class="text-rigth">Contenido: {{duda.contenido}}</p><br>
+                </div>
+                <div class="col-sm-12 justify-content-center">
+                    <form class="form-horizontal" action="{% url 'EnviarRespuestaAlumno' duda.ID%}" method="POST" role="form"
+                        enctype="multipart/form-data">
+                        {%csrf_token%}
+                        <div class="form-group">
+                            <br>
+                            <h6>Responder a la publicación</h6>
+                            <input name="ID_duda" class="form-control" value="{{duda.ID}}" type="hidden">
+                            <textarea class="form-control" rows="4" name="contenido"
+                                placeholder="Escriba su respuesta aqui"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="p-2 text-right">
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                    <h5>Respuestas: </h5>
+                    <br>
+                    {% for resp in respuestas %}
+                    {% ifequal resp.ID_duda duda.ID %}
+                    
+                        <div class="col-sm-12 d-flex justify-content-start">
+                            <p class="text-rigth">{{resp.contenido}}</p><br>
+                        </div>
+                        <div class="col-sm-12 d-flex justify-content-start">
+                            <p class="text-rigth">Publicado por: {{resp.nombre_usuario}}</p>
+                        </div>
+                        <div class="col-sm-12 d-flex justify-content-end">
+                            <p class="text-rigth">Fecha de publicación: {{duda.create_at}}</p>
+                        </div>
+                        <div class="col-12">
+                            <hr color="#9BF176" size=3>
+                        </div>
+                    {% endifequal %}
+                    {% endfor %}
+                    <br>
+                </div>
+            </div>
+            <!-- Inicio de un foro -->
+        </div>
+        <!-- Fin cards -->
+    </div>
+    <!-- Fin del div del foro de responder dudas -->
+</div>
+<br><br>
+
+
+{% endblock contenido %}

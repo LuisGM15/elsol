@@ -1,0 +1,74 @@
+{% extends 'modelos/profesor/navBar.html' %}
+
+{% block titulo %} Menu {% endblock titulo %}
+
+
+{% block contenido %}
+{%load static%}
+<link href="{% static 'profesor/css/registro.css' %}" rel="stylesheet">
+
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    <div class="container">
+       <div class="alert alert-danger" role="alert">
+            {{ message }}
+       </div>
+    </div>    
+    {% endfor %}
+</div>
+{% endif%}
+
+<div id="about" class="container spacer about">
+    <div class="main">
+        <div class="imagen">
+            <div class="card" style=>
+                {%load static%}
+                <img src="{% static 'profesor/images/principal/prof_menu1.png' %}" class="card-img-top"
+                    style="width: max-content;" alt="Desarrollo-movil">
+            </div>
+        </div>
+        <div class="form-regis">
+            <form class="form-horizontal" action="{% url 'AltaActividadEnviar'%}" method="POST" role="form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset>
+                    <div>
+                        <input class="borde" placeholder="Nombre" name="titulo" type="text" id="nombre">
+                    </div>
+                    <br>
+                    <div>
+                        <textarea class="borde" placeholder="Descripción" name="descripcion" type="text" id="descripcion" style="width: 204px;"></textarea>
+                    </div>
+                    <br>
+                    <p>Fecha de entrega: </p>
+                    <div>
+                        <input class="borde" type="datetime-local" name="fecha_entrega" id="datetime" style="width: 204px;">
+                    </div>
+                    <br>
+                    <div class="botonc">
+                        <input class="boton" type="submit" value="Registrar" name="admin_login">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- CARDS TAREAS -->
+<!-- <div class="container spacer about ">
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="card" style=>
+                    {%load static%}
+                    <img src="{% static 'profesor/images/principal/prof_menu1.png' %}" class="card-img-top"
+                        style="width: max-content;" alt="Desarrollo-movil">
+                </div>
+            </div>
+            <div class="formu-regis">
+                <div class="container"></div>
+
+            </div>
+        </div>
+</div> -->
+<!-- END CARDS -->
+
+{% endblock contenido %}

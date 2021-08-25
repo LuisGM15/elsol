@@ -1,0 +1,8 @@
+.titulosobre, h1{
+    text-align: center;
+    color: rgb(68, 0, 255);
+}
+.titulosobre, h3{
+    color: black;
+    text-align: justify;
+}

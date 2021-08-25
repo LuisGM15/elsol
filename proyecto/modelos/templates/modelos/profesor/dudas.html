@@ -1,0 +1,60 @@
+{% extends 'modelos/profesor/navBar.html' %}
+
+{% block titulo %} Menu {% endblock titulo %}
+
+
+{% block contenido %}
+{%load static%}
+<link href="{% static 'profesor/css/dudas.css' %}" rel="stylesheet">
+
+<div class="container">
+    <div class="titulosobre">
+        <div class="row">
+            <div class="col-5">
+                <hr color="#9BF176" size=3>
+            </div>
+            <div class="col-2" style="text-align: center;">
+                <i> Foro</i>
+            </div>
+            <div class="col-5">
+                <hr color="#1BE1DB" size=3>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% for duda in dudas %}
+<div class="container">
+    <!-- Inico del div del foro de dudas -->
+    <div class="container">
+        <!-- Inicio Cards para el foro de dudas -->
+        <div class="card mb-3">
+            <!-- Inicio de un foro -->
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="col-9">
+                        <div class="mr-auto p-2">
+                            <h5><a href="{% url 'PResponder' duda.ID%}">{{duda.titulo}}</a></h5>
+                            <p>Contenido: {{duda.contenido}} </p>
+                            <h6>Publicado por: {{duda.nombre_usuario}}</h6>
+                        </div>
+                        <div class="p-2 linestyle">
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="p-4 align-self-center">
+                            <p class="card-text"><small class="text-muted">{{duda.create_at}}</small></p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- Inicio de un foro -->
+        </div>
+        <!-- Fin cards -->
+    </div>
+    <!-- Fin del div del foro de dudas -->
+</div>
+{% endfor %}
+
+{% endblock contenido %}

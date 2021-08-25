@@ -1,0 +1,32 @@
+.stylelogin{
+    text-align:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+
+#user_icon{
+    width:30%;
+    padding: 1em;
+}
+
+.formContent{
+    width: 50%;
+}
+
+.colorI{
+    border:1px solid #1a18c4;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.colorIL{
+    color:white;
+    background-color:#1a18c4;
+    border-radius: 4px;
+    border:none;
+    cursor: pointer;
+    width: 100px;
+}
