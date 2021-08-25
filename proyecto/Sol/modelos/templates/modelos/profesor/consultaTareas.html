@@ -1,0 +1,66 @@
+{% extends 'modelos/profesor/navBar.html' %}
+
+{% block titulo %} Menu {% endblock titulo %}
+
+
+{% block contenido %}
+{%load static%}
+<link href="{% static 'profesor/css/consultaTareas.css' %}" rel="stylesheet">
+
+<div class="container">
+    <div class="titulosobre">
+        <div class="row">
+            <div class="col-5">
+                <hr color="#9BF176" size=3>
+            </div>
+            <div class="col-2" style="text-align: center;">
+                <i>Actividades</i>
+            </div>
+            <div class="col-5">
+                <hr color="#1BE1DB" size=3>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    <div class="container">
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+    </div>    
+    {% endfor %}
+</div>
+{% endif%}
+
+{% for actividad in actividades %}
+<div class="container">
+    <!-- Inico del div del foro de dudas -->
+    <div class="container">
+        <!-- Inicio Cards para el foro de dudas -->
+        <div class="card mb-3">
+            <!-- Inicio de un foro -->
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="col-12">
+                        <div class="mr-auto p-2">
+                            <h5><a href="{% url 'TareasDetalleProfesor' actividad.ID%}">{{actividad.titulo}}</a></h5>
+                            <p>{{actividad.descripcion}}</p>
+                            <h6>Fecha de entrega: {{actividad.fecha_entrega}}</h6>
+                        </div>
+                        <div class="p-2 linestyle">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Inicio de un foro -->
+        </div>
+        <!-- Fin cards -->
+    </div>
+    <!-- Fin del div del foro de dudas -->
+</div>
+{% endfor %}
+<br>
+{% endblock contenido %}

@@ -1,0 +1,31 @@
+{% extends 'contenido/dashboard.html' %}
+
+{% block titulo %} Acceso {% endblock titulo %}
+
+
+{% block contenido %}
+{%load static%}
+<br><br>
+<div class="stylelogin">
+    <div class="formContent">
+        <div id="Img-avatar">
+            <!-- Aquí va imagen perro -->
+            <img src="{% static 'contenido/images/login/user.png' %}" alt="imagen_user" id="user_icon">
+        </div><br>
+        <!-- Formulario de  -->
+        <form class="form-horizontal" action="{% url 'Login'%}" method="POST" role="form">
+            {%csrf_token%}
+            <div class="form-group">
+                <input type="text" class="w-50 colorI" placeholder="Clave" name="clave">
+            </div>
+            <div class="form-group">
+                <input type="password" class="w-50 colorI" placeholder="Password" name="password">
+            </div><br>
+            <div class="form-group">
+                <input type="submit" value="Acceder" class="colorIL">
+            </div>
+        </form><br><br>
+    </div>
+</div>
+
+{% endblock contenido %}

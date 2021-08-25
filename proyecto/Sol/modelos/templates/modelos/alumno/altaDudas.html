@@ -1,0 +1,50 @@
+{% extends 'modelos/alumno/navBarAlumno.html' %}
+
+{% block titulo %} Foro de dudas {% endblock titulo %}
+
+{% block contenido %}
+
+{%load static%}
+<div class="container">
+    <div class="container">
+        <div class="titulosobre">
+            <div class="row">
+                <div class="col-4">
+                    <hr color="#9BF176" size=3>
+                </div>
+                <div class="col-4" style="text-align: center; font-size: 30px;">
+                    <i> ¿Cual es tu duda? </i>
+                </div>
+                <div class="col-4">
+                    <hr color="#1BE1DB" size=3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Inico del div del formulario de dudas -->
+    <div class="container col-7">
+        <hr color="#1BE1DB" size=3>
+        <form class="form-horizontal" action="{% url 'AltaForo' %}" method="POST" role="form"
+            enctype="multipart/form-data">
+            {%csrf_token%}
+            <div class="form-group col-12">
+                <label for="exampleFormControlInput1" style="font-size: 25px;">Asunto</label>
+                <input type="text"  name="titulo" class="form-control" id="" placeholder="Ej. Sobre la tarea de... ">
+            </div>
+            <div class="form-group col-12">
+                <label for="exampleFormControlTextarea1" style="font-size: 25px;">Escriba aqui su duda o
+                    comentario</label>
+                <textarea class="form-control" name="contenido" id="exampleFormControlTextarea1" rows="4"
+                    placeholder="Ej. Buena tarde profesor"></textarea>
+                <div class="p-2 text-right">
+                    <button type="submit" class="btn btn-primary" value="">Enviar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock contenido %}

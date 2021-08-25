@@ -1,0 +1,28 @@
+.duda {
+    border: solid #ccc 3px;
+    display: flex;
+    justify-content: center;
+    
+
+}
+
+div.vertical-line{
+    width: 1px; 
+    background-color: blue; 
+    height: 100%; 
+    float: left; 
+    text-align: center;
+
+}
+
+.estiloDuda {
+}
+
+.dentroDuda {
+    padding: 30px 40px 25px;
+
+}
+
+.derecha {
+    float: right;
+}
